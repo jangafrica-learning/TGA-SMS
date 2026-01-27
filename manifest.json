@@ -1,0 +1,11 @@
+{
+  "background_color": "#ffffff",
+  "dir": "ltr",
+  "display": "standalone",
+  "name": "The Gambia Academy SMS",
+  "orientation": "any",
+  "scope": "/",
+  "short_name": "TGA SMS",
+  "start_url": "/",
+  "theme_color": "#ffffff"
+}
