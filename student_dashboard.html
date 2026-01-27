@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>TGA Students Portal</title>
+
+    <!-- ALLOW ZOOM -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+            background: #f4f6f8;
+            overflow-x: hidden;
+        }
+
+        .wrapper {
+            display: flex;
+            min-height: 100vh;
+        }
+
+        /* OVERLAY (MOBILE ONLY) */
+        .overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.4);
+            display: none;
+            z-index: 9;
+        }
+
+        .overlay.active {
+            display: block;
+        }
+
+        /* SIDEBAR */
+        .sidebar {
+            width: 260px;
+            background: #023b5e;
+            color: #fff;
+            padding: 15px;
+            position: fixed;
+            top: 0;
+            left: -260px;
+            height: 100vh;
+            transition: left 0.3s ease;
+            z-index: 10;
+            display: flex;
+            flex-direction: column;
+            overflow-y: auto;
+        }
+
+        .sidebar.active {
+            left: 0;
+        }
+
+        .sidebar h2 {
+            font-size: 18px;
+            margin-bottom: 15px;
+        }
+
+        .sidebar button {
+            width: 100%;
+            background: none;
+            border: none;
+            color: #fff;
+            text-align: left;
+            padding: 10px;
+            font-size: 15px;
+            cursor: pointer;
+        }
+
+        .sidebar button:hover {
+            background: #f301ef;
+        }
+
+        .submenu {
+            display: none;
+            padding-left: 10px;
+        }
+
+        .submenu button {
+            font-size: 14px;
+            background: #02799d;
+            margin-bottom: 4px;
+        }
+
+        .sidebar-footer {
+            margin-top: auto;
+            padding: 15px 10px;
+            font-size: 13px;
+            text-align: center;
+            opacity: 0.9;
+        }
+
+        /* MAIN */
+        .main {
+            flex: 1;
+            width: 100%;
+        }
+
+        /* TOP BAR */
+        .top-bar {
+            height: 60px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 0 20px;
+            background: #f4f6f8;
+        }
+
+        .hamburger {
+            background: #0b3d2e;
+            color: #fff;
+            border: none;
+            width: 44px;
+            height: 44px;
+            font-size: 22px;
+            border-radius: 6px;
+            cursor: pointer;
+        }
+
+        /* CENTER WELCOME */
+        .center-welcome {
+            min-height: calc(100vh - 60px);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 20px;
+        }
+
+        .center-welcome h2 {
+            font-size: clamp(22px, 4vw, 28px);
+            color: #0b3d2e;
+            margin-bottom: 12px;
+        }
+
+        .center-welcome p {
+            max-width: 600px;
+            line-height: 1.6;
+            color: #444;
+            font-size: clamp(14px, 2.5vw, 16px);
+        }
+
+        iframe {
+            width: 100%;
+            height: calc(100vh - 60px);
+            border: none;
+            background: #fff;
+        }
+
+        .back-btn {
+            background: #0b3d2e;
+            color: #fff;
+            border: none;
+            padding: 8px 12px;
+            cursor: pointer;
+            border-radius: 4px;
+        }
+
+        /* DESKTOP MODE */
+        @media (min-width: 1024px) {
+            .sidebar {
+                left: 0;
+                position: relative;
+            }
+
+            .overlay {
+                display: none !important;
+            }
+
+            .hamburger {
+                display: none;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="overlay" id="overlay" onclick="closeMenu()"></div>
+
+    <div class="wrapper">
+
+        <!-- SIDEBAR-->
+        <div class="sidebar" id="sidebar">
+            <h2>STUDENTS SPACE</h2>
+
+            <button onclick="toggle('sched')">Schedules</button>
+            <div class="submenu" id="sched">
+                <button
+                    onclick="loadFrame('https://docs.google.com/spreadsheets/d/e/2PACX-1vTJ1lZ1EfOxqgk2lsBtwHCZKsx7mVRq0XXC3ZlhEhcY2nizXw6Lh7kyE59vMawlW7bZ59GBcfipdIS4/pubhtml?widget=true&headers=false')">Timetable</button>
+                <button
+                    onclick="loadFrame('https://drive.google.com/file/d/1R3Ff11X5JOuHYc_EvxoQrunUdpVik0AQ/preview')">Term
+                    Dates</button>
+                <button
+                    onclick="loadFrame('https://docs.google.com/spreadsheets/d/e/2PACX-1vQq0Wyx2dYpP4JJJkq5haVsu7H6pomnf5pJeP9lkQBF2mqTPdrRcopH13tP1ppYm1xgUMCJhRA2vDe_/pubhtml?widget=true&headers=false')">After
+                    School</button>
+                <button
+                    onclick="loadFrame('https://drive.google.com/file/d/1whLFd5cCybREfVi0IKG7cBnqzHSAyKEZ/preview')">Lunch
+                    Meals</button>
+            </div>
+
+            <button onclick="toggle('progress')">Student Progress</button>
+            <div class="submenu" id="progress">
+                <button
+                    onclick="loadFrame('https://docs.google.com/spreadsheets/d/e/2PACX-1vQs6dBKKQkZlCddOURh5pB7Rwruxs4s1SJ0N6AFGyaGcI9A4qb-SU2G9LTtbFBbaJ3QcDP5MnHC1a2E/pubhtml?widget=true&headers=false')">Team
+                    Point</button>
+                <button
+                    onclick="loadFrame('https://docs.google.com/spreadsheets/d/e/2PACX-1vRSEoIblyrRp9ip8OVoJv5CPwf_rD3MGKTGGk4W-5fVZyfTtl8zV3qOALyJoYEMW6mV0W-W6-Rw8B8z/pubhtml?widget=true&headers=false')">Routines</button>
+                <button
+                    onclick="loadFrame('https://docs.google.com/spreadsheets/d/e/2PACX-1vT_rQVu_-SuUWg46u0J799YKBl-7ZvqkMAVOoawNrrpllo_KOt8D64yYGkMXatycB1-snNZ1NPysdUg/pubhtml?widget=true&headers=false')">Test
+                    Scores</button>
+                <button
+                    onclick="loadFrame('https://docs.google.com/spreadsheets/d/e/2PACX-1vRu4FoDhp25dw9P92gS77rNiEi1aBH_YCqAPF6jsSuNNEUGXhb5wAk-nXdm2TjiF7Fxwxj6Js5rp097/pubhtml?widget=true&headers=false')">Exam
+                    Scores</button>
+            </div>
+            <!-- REQUEST CENTRE -->
+            <button onclick="toggle('request')">Request Centre</button>
+            <div class="submenu" id="request">
+                <button
+                    onclick="loadFrame('https://docs.google.com/forms/d/e/1FAIpQLSfsE_bfS5g4f_i7GmO2xL6VQ-yF4tFC5VAVfBkz0kgk8L3uGg/viewform?embedded=true')">
+                    Financial Request
+                </button>
+
+                <button
+                    onclick="loadFrame('https://docs.google.com/forms/d/e/1FAIpQLSdfEi36yGNIqYxNe0L2zRD_U6BzoaXiivi8XwB2sguBaOOjIQ/viewform?embedded=true')">
+                    Laptop Request
+                </button>
+            </div>
+            <!-- LOGOUT -->
+            <div class="sidebar-logout">
+                <button onclick="logout()">Logout</button>
+            </div>
+            <div class="sidebar-footer">
+                Powered by JangAfrica<br>
+                © <span id="year"></span> The Gambia Academy
+            </div>
+        </div>
+
+        <!-- MAIN -->
+        <div class="main">
+            <div class="top-bar">
+                <button class="hamburger" onclick="openMenu()">☰</button>
+            </div>
+
+            <div id="content">
+                <div class="center-welcome">
+                    <h2>Welcome to The Gambia Academy Student Portal</h2>
+                    <h4>
+                        Learn with purpose. Act with integrity. Grow with confidence.
+                    </h4>
+                    <p1>Select an item from the menu to continue.</p1>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const sidebar = document.getElementById("sidebar");
+        const overlay = document.getElementById("overlay");
+
+        function openMenu() {
+            sidebar.classList.add("active");
+            overlay.classList.add("active");
+        }
+
+        function closeMenu() {
+            sidebar.classList.remove("active");
+            overlay.classList.remove("active");
+        }
+
+        function toggle(id) {
+            const el = document.getElementById(id);
+            el.style.display = el.style.display === 'block' ? 'none' : 'block';
+        }
+
+        function loadFrame(url) {
+            closeMenu();
+            document.getElementById('content').innerHTML = `
+                <div class="top-bar">
+                    <strong>The Gambia Academy SMS</strong>
+                    <button class="back-btn" onclick="goBack()">← Back</button>
+                </div>
+                <iframe src="${url}"></iframe>
+            `;
+        }
+
+        function goBack() {
+            document.getElementById('content').innerHTML = `
+                <div class="center-welcome">
+                    <h2>Welcome Back</h2>
+                    <p>Select an item from the sidebar to continue managing the system.</p>
+                </div>
+            `;
+        }
+
+        document.getElementById("year").textContent = new Date().getFullYear();
+        function logout() {
+            // Optional: clear session storage later if you add login sessions
+            // sessionStorage.clear();
+
+            window.location.href = "index.html"; // your homepage
+        }
+    </script>
+
+</body>
+
+</html>

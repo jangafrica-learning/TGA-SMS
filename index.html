@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5">
+    <title>The Gambia Academy | Portal</title>
+
+    <style>
+        :root {
+            --gold: #020742;
+            --green: #0F5D4A;
+            --red: #8B2C2C;
+            --cream: #FAF7F2;
+            --dark: #1F1F1F;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Segoe UI", system-ui
+        }
+
+        body {
+            background: var(--cream);
+            color: var(--dark)
+        }
+
+        /* HEADER */
+        .header {
+            background: linear-gradient(135deg, var(--green), #083A2E);
+            color: #fff;
+            padding: 40px 20px 60px;
+            text-align: center;
+            position: relative;
+        }
+
+        .header::after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 6px;
+            background: linear-gradient(to right, var(--gold), var(--red), var(--gold));
+        }
+
+        .header img {
+            width: 90px;
+            margin-bottom: 10px
+        }
+
+        /* MAIN */
+        .main {
+            padding: 40px 20px;
+            display: flex;
+            justify-content: center
+        }
+
+        .portal-grid {
+            max-width: 1100px;
+            width: 100%;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 260px));
+            gap: 22px;
+            justify-content: center;
+        }
+
+        /* CARD */
+        .portal-card {
+            background: #fff;
+            border-radius: 14px;
+            padding: 26px 20px;
+            text-align: center;
+            text-decoration: none;
+            color: var(--dark);
+            box-shadow: 0 10px 24px rgba(0, 0, 0, .08);
+            transition: .35s ease;
+            cursor: pointer;
+            position: relative;
+        }
+
+        .portal-card::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 5px;
+            width: 100%;
+            border-radius: 14px 14px 0 0;
+        }
+
+        .portal-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, .15);
+        }
+
+        /* ICON */
+        .icon {
+            width: 56px;
+            height: 56px;
+            margin: 0 auto 12px;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        .icon svg {
+            width: 100%;
+            height: 100%;
+            fill: currentColor
+        }
+
+        @keyframes float {
+
+            0%,
+            100% {
+                transform: translateY(0)
+            }
+
+            50% {
+                transform: translateY(-6px)
+            }
+        }
+
+        /* COLORS */
+        .admin {
+            color: var(--gold)
+        }
+
+        .admin::before {
+            background: var(--gold)
+        }
+
+        .staff {
+            color: var(--green)
+        }
+
+        .staff::before {
+            background: var(--green)
+        }
+
+        .students {
+            color: #6c038d
+        }
+
+        .students::before {
+            background: #5c0147
+        }
+
+        .parents {
+            color: #0F5D4A
+        }
+
+        .parents::before {
+            background: #0F5D4A
+        }
+
+        .transport {
+            color: var(--green)
+        }
+
+        .transport::before {
+            background: linear-gradient(to right, var(--green), var(--gold))
+        }
+
+        .website {
+            color: #690854;
+            /* nice professional blue */
+        }
+
+        .website::before {
+            background: linear-gradient(to right, #89067e, #780170);
+        }
+
+
+        /* FOOTER */
+        .footer {
+            text-align: center;
+            padding: 25px 10px;
+            font-size: .8rem;
+            color: #777777;
+        }
+
+        /* MODAL */
+        .modal {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, .55);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+        }
+
+        .modal.active {
+            display: flex
+        }
+
+        .modal-box {
+            background: #fff;
+            padding: 30px;
+            border-radius: 16px;
+            width: 90%;
+            max-width: 360px;
+            text-align: center;
+            position: relative;
+            animation: pop .3s ease;
+        }
+
+        @keyframes pop {
+            from {
+                transform: scale(.85);
+                opacity: 0
+            }
+
+            to {
+                transform: scale(1);
+                opacity: 1
+            }
+        }
+
+        .modal-box h3 {
+            margin-bottom: 10px
+        }
+
+        .modal-box input {
+            width: 100%;
+            padding: 12px;
+            margin: 15px 0;
+            border-radius: 8px;
+            border: 1px solid #ccc;
+            font-size: 1rem;
+        }
+
+        .modal-box button {
+            width: 100%;
+            padding: 12px;
+            background: var(--green);
+            color: #fff;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            cursor: pointer;
+        }
+
+        .close-btn {
+            position: absolute;
+            top: 10px;
+            right: 14px;
+            font-size: 1.3rem;
+            cursor: pointer;
+            color: #888;
+        }
+
+        .close-btn:hover {
+            color: #000
+        }
+    </style>
+</head>
+
+<body>
+
+    <header class="header">
+        <img src="logo.png" alt="The Gambia Academy">
+        <h1>The Gambia Academy</h1>
+        <p>Learning with Purpose • Leading with Integrity</p>
+    </header>
+
+    <main class="main">
+        <section class="portal-grid">
+
+            <div class="portal-card admin" onclick="openModal('admin')">
+                <div class="icon">
+                    <svg viewBox="0 0 24 24">
+                        <path d="M12 1l9 4v6c0 5-3.8 9.7-9 11-5.2-1.3-9-6-9-11V5l9-4z" />
+                    </svg>
+                </div>
+                <h3>Administration</h3>
+                <p>School management & finance</p>
+            </div>
+
+            <div class="portal-card staff" onclick="openModal('staff')">
+                <div class="icon">
+                    <svg viewBox="0 0 24 24">
+                        <path
+                            d="M12 12c2.7 0 5-2.3 5-5s-2.3-5-5-5-5 2.3-5 5 2.3 5 5 5zm0 2c-3.3 0-10 1.7-10 5v3h20v-3c0-3.3-6.7-5-10-5z" />
+                    </svg>
+                </div>
+                <h3>Staff</h3>
+                <p>Teaching & reports</p>
+            </div>
+
+            <a href="student_dashboard.html" class="portal-card students">
+                <div class="icon">
+                    <svg viewBox="0 0 24 24">
+                        <path d="M12 3L1 9l11 6 9-4.9V17h2V9L12 3z" />
+                    </svg>
+                </div>
+                <h3>Students</h3>
+                <p>Academics & requests</p>
+            </a>
+
+            <a href="transport-logistics.html" class="portal-card transport">
+                <div class="icon">
+                    <svg viewBox="0 0 24 24">
+                        <path
+                            d="M4 16c0 .9.7 2 2 2s2-1.1 2-2-1-2-2-2-2 1.1-2 2zm12 0c0 .9.7 2 2 2s2-1.1 2-2-1-2-2-2-2 1.1-2 2zM5 11h14V6c0-1.1-.9-2-2-2H7C5.9 4 5 4.9 5 6v5z" />
+                    </svg>
+                </div>
+                <h3>Transport & Logistics</h3>
+                <p>Bus & logistics</p>
+            </a>
+            <a href="parent_dashboard.html" class="portal-card parents">
+                <div class="icon">
+                    <svg viewBox="0 0 24 24">
+                        <path
+                            d="M16 11c1.7 0 3-1.3 3-3S17.7 5 16 5s-3 1.3-3 3 1.3 3 3 3zm-8 0c1.7 0 3-1.3 3-3S9.7 5 8 5 5 6.3 5 8s1.3 3 3 3zm0 2c-2.7 0-8 1.3-8 4v3h10v-3c0-1.2.5-2.3 1.4-3.2C10.4 13.3 9 13 8 13zm8 0c-1 0-2.4.3-3.4.8 1 .9 1.4 2 1.4 3.2v3h10v-3c0-2.7-5.3-4-8-4z" />
+                    </svg>
+                </div>
+                <h3>Parents</h3>
+                <p>Student progress</p>
+            </a>
+            <a href="https://www.thegambiaacademy.org/" class="portal-card website" target="_blank" rel="noopener">
+
+                <div class="icon">
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                        <path
+                            d="M12 2a10 10 0 100 20 10 10 0 000-20zm7.93 9h-3.17a15.3 15.3 0 00-1.37-5.02A8.03 8.03 0 0119.93 11zM12 4c.88 1.17 1.58 2.9 1.95 5H10.05C10.42 6.9 11.12 5.17 12 4zM4.07 11a8.03 8.03 0 014.54-5.02A15.3 15.3 0 007.24 11H4.07zm0 2h3.17a15.3 15.3 0 001.37 5.02A8.03 8.03 0 014.07 13zM12 20c-.88-1.17-1.58-2.9-1.95-5h3.9c-.37 2.1-1.07 3.83-1.95 5zm3.39-1.98A15.3 15.3 0 0016.76 13h3.17a8.03 8.03 0 01-4.54 5.02z" />
+                    </svg>
+                </div>
+
+                <h3>Visit Our Website</h3>
+                <p>For more information about The Gambia Academy</p>
+            </a>
+
+        </section>
+    </main>
+
+    <footer class="footer">
+        © <span id="year"></span> The Gambia Academy • Powered by JangAfrica
+    </footer>
+
+    <!-- PASSWORD MODAL -->
+    <div class="modal" id="modal" onclick="closeModal(event)">
+        <div class="modal-box">
+            <span class="close-btn" onclick="hideModal()">✕</span>
+            <h3 id="modalTitle"></h3>
+            <input type="password" id="password" placeholder="Enter password">
+            <button onclick="verify()">Access</button>
+        </div>
+    </div>
+
+    <script>
+        let role = "";
+        function openModal(r) {
+            role = r;
+            document.getElementById("modalTitle").textContent =
+                r === "admin" ? "Administration Access" : "Staff Access";
+            document.getElementById("password").value = "";
+            document.getElementById("modal").classList.add("active");
+        }
+        function hideModal() {
+            document.getElementById("modal").classList.remove("active");
+        }
+        function closeModal(e) {
+            if (e.target.id === "modal") hideModal();
+        }
+        function verify() {
+            const p = document.getElementById("password").value;
+            if (role === "admin" && p === "ga@2026") location.href = "admin_dashboard.html";
+            else if (role === "staff" && p === "ga@26") location.href = "staff_dashboard.html";
+            else alert("Incorrect password");
+        }
+        document.getElementById("year").textContent = new Date().getFullYear();
+    </script>
+
+</body>
+
+</html>
