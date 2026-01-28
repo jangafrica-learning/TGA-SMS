@@ -6,12 +6,13 @@
   "background_color": "#0F5D4A",
   "theme_color": "#0F5D4A",
   "orientation": "portrait",
-  "icons": [
-    {
-      "src": "logo.png",
-      "sizes": "208x208",
-      "type": "image/png"
-    },
+"icons": [
+  {
+    "src": "logo.png",
+    "sizes": "208x208",
+    "type": "image/png",
+    "purpose": "any"
+  }
 
   ],
   "id": "tga-sms",
