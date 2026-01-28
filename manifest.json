@@ -12,11 +12,7 @@
       "sizes": "208x208",
       "type": "image/png"
     },
-    {
-      "src": "logo.png",
-      "sizes": "512x512",
-      "type": "image/png"
-    }
+
   ],
   "id": "tga-sms",
   "description": "TGA School Management System is a progressive web application for managing students, staff, parents, transport, and school operations."
