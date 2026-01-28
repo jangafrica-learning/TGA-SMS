@@ -14,7 +14,7 @@
     },
     {
       "src": "logo.png",
-      "sizes": "208x208",
+      "sizes": "512x512",
       "type": "image/png"
     }
   ],
