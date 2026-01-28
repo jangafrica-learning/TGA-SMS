@@ -1,7 +1,7 @@
 {
   "name": "TGA School Management System",
   "short_name": "TGA-SMS",
-  "start_url": "/",
+  "start_url": "/index.html",
   "display": "standalone",
   "background_color": "#0F5D4A",
   "theme_color": "#0F5D4A",
